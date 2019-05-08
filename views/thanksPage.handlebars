@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+
+<div class="thankYouBox">
+    <div class="login-box">
+        <a href="/logout"><button type="logout-button" class="logout-button">Logout</button></a>
+        <a href="/profile/edit"><button type="button" class="profile-button">Profile</button></a>
+        <p class="loggedIn"> You are logged in as: {{ name }} </p>
+
+        <!-- <img src="/flyingDolphins.gif" class="gif" alt="dolphins fly away" id="dolphins2"> -->
+        <iframe class="success-gif" src="https://giphy.com/embed/xUPGcMzwkOY01nj6hi" width="300" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        <h2 id="thankYouText"> Thank you! Your voice matters! </h2>
+        <img src="{{ signature }}" alt="signature" id="signature">
+
+        <a href="/listOfPeople" class="login-link"><p> See all people who have singed the petition.</p></a>
+
+        <form id="unsignForm" method="POST">
+            <button class="delete-button"> Press here to DELETE your signature </button>
+            <input name="_csrf" value="{{csrfToken}}" type="hidden">
+        </form>
+    </div>
+</div>

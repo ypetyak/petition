@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+
+<div id="mainBox">
+    <div class="login-box">
+        <p class="loggedIn"> You are logged in as: {{ name }} </p>
+        <a href="/logout"><button type="button" class="logout-button">Logout</button></a>
+        <a href="/petition"><button type="button" class="back-button">Petition</button></a>
+
+            <div class="text">
+
+                <h2 style="text-decoration: underline; margin-bottom: 10px; color: #FF8300" > Edit your profile: </h2>
+
+            </div>
+
+
+            {{#if error}}
+            <div class="error"> Opps! Error! Try Again! </div>
+            {{/if}}
+
+            <form method="POST" >
+                <div id="names2">
+                    <div class="login-input-box">
+                        <input class="login-input" name="first" placeholder="first name" value="{{ firstName }}" required>
+                    </div>
+                    <div class="login-input-box">
+                        <input class="login-input" name="last" placeholder="last name" value="{{ lastName }}" required>
+
+                    </div>
+                    <div class="login-input-box">
+                        <input class="login-input" name="email" placeholder="email" value="{{ email }}" required>
+
+                    </div>
+                    <div class="login-input-box">
+                        <input class="login-input" name="password" placeholder="password" value="{{ password }}" type="password">
+
+                    </div>
+                    <div class="login-input-box">
+                        <input class="login-input" name="age" placeholder="age" value="{{ age }}">
+
+                    </div>
+                    <div class="login-input-box">
+                        <input class="login-input" name="city" placeholder="city" value="{{ city }}">
+
+                    </div>
+                    <div class="login-input-box">
+                        <input class="login-input" name="url" placeholder="homepage" value="{{ url }}">
+                    </div>
+                <button class="login-button">Update</button>
+            </div>
+                <input name="_csrf" value="{{csrfToken}}" type="hidden"> <!-- security feature -->
+            </form>
+    </div>
+</div>

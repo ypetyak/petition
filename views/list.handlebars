@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+
+<div class="login-box">
+    <a href="/logout"><button type="button" class="logout-button">Logout</button></a>
+    <a href="/profile/edit"><button type="button" class="profile-button">Profile</button></a>
+    <p class="loggedIn"> You are logged in as: {{ name }} </p>
+
+    <h2 style="margin-top: 50px; color: #FF8300"> All {{count}} people who have signed this petiton: </h2>
+
+<ul class="listOfPeople">
+    {{#each signers}}
+        {{#if url}}
+
+        <li> <a class="list-url" href="/{{url}}">{{first}} {{last}}</a> {{age}}  <a class="list-url" href="/signers/{{city}}">{{city}}</a></li>
+
+        {{else}}
+
+        <li>{{first}} {{last}} {{age}}  <a class="list-url" href="/signers/{{city}}">{{city}}</a></li>
+
+        {{/if}}
+
+    {{/each}}
+
+    <a href="/thankYou"><button type="button" class="back-button">Go Back</button></a>
+</ul>
+</div>

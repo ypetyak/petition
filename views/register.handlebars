@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+
+<div id="mainBox">
+    <div class="login-box">
+        <div class="login-text">
+            <h2 style="text-decoration: underline; margin-bottom: 30px" > Petition N42 </h2>
+            <h2> Sign a petiton to prevent lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </h2>
+        </div>
+
+        {{#if error}}
+        <div class="error"> Opps! Error! Try Again! </div>
+        {{/if}}
+
+        <form method="POST" >
+            <div id="names2">
+            <div class="login-input-box">
+                <input class="login-input" placeholder="first name" name="first" required>
+            </div>
+            <div class="login-input-box">
+                <input class="login-input" placeholder="last name" name="last" required>
+            </div>
+            <div class="login-input-box">
+                <input class="login-input" placeholder="email" name="email" required>
+            </div>
+            <div class="login-input-box">
+                <input class="login-input" placeholder="password" name="password" type="password" required>
+            </div>
+            <button class="login-button">Register</button>
+            <a href="/login" class="login-link"><p> Already have an account? Login here.</p></a>
+        </div>
+            <!-- <button class="submitButton">Register</button> -->
+
+            <input name="_csrf" value="{{csrfToken}}" type="hidden"> <!-- security feature -->
+        </form>
+    </div>
+</div>

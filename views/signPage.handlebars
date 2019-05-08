@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+
+<div id="mainBox">
+    <div class="login-box">
+        <a href="/logout"><button type="button" class="logout-button">Logout</button></a>
+        <a href="/profile/edit"><button type="button" class="profile-button">Profile</button></a>
+        <p class="loggedIn"> You are logged in as: {{ name }} </p>
+        <div class="login-text">
+            <h2 style="text-decoration: underline; margin-bottom: 10px" > Petition N42 </h2>
+            <h2> Sign a petiton to prevent lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h2>
+        </div>
+        {{#if error}}
+        <div class="error"> Opps! Error! Try Again! </div>
+        {{/if}}
+
+        <form  id="signatureForm" method="POST" >
+            <input name="sig" type="hidden">
+
+            <input name="_csrf" value="{{csrfToken}}" type="hidden"> <!-- security feature -->
+            <div id="signHere">
+                <canvas id="canv" width="700" height="150"></canvas>
+                <p style="color: #FF8300"> Sign Here </p>
+            </div>
+            <button class="login-button">Submit</button>
+        </form>
+    </div>
+</div>
