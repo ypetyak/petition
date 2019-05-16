@@ -5,9 +5,6 @@ const bp = require("body-parser");
 const fs = require("fs");
 const db = require("./SQL/db.js");
 
-
-const cache = require("./cache");
-
 const cookieSession = require("cookie-session");
 
 /// protection
@@ -115,7 +112,6 @@ app.post("/petition", (req, res) => {
 ///////////////////////////////////////////////////////////////////////////////////
 
 app.get("/thankYou", checkIfLogged, function(req, res) {
-    cache.del("list");
     if (!req.session.user.signID) {
         res.redirect("/petition");
     } else {
@@ -237,7 +233,6 @@ app.get("/register", function(req, res) {
 });
 
 app.post("/register", function(req, res) {
-    cache.del("list");
     hashPass(req.body.password)
         .then(hashed => {
             db.registration(
@@ -254,6 +249,12 @@ app.post("/register", function(req, res) {
                     }
                 };
                 res.redirect("/profile");
+            }).catch(err => {
+                console.log("Registration Error: ", err);
+                res.render("register", {
+                    layout: "main",
+                    error: true
+                });
             });
         })
         .catch(err => {
@@ -276,7 +277,6 @@ app.get("/profile", checkIfLogged, function(req, res) {
 });
 
 app.post("/profile", (req, res) => {
-    cache.del("list");
     db.saveProfile(
         req.session.user.userId,
         req.body.age,
@@ -310,6 +310,7 @@ app.get("/login", function(req, res) {
 });
 
 app.post("/login", function(req, res) {
+   
     db.returnPassword(req.body.email)
         .then(result => {
             var sessionObject = result;
@@ -382,7 +383,6 @@ app.get("/profile/edit", checkIfLogged, (req, res) => {
 //// Now we will update profile info:
 
 app.post("/profile/edit", (req, res) => {
-    cache.del("list");
     if (req.body.password != "") {
         hashPass(req.body.password).then(hashed => {
             db.updateUserTable(
